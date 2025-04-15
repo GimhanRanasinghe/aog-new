@@ -778,20 +778,24 @@ export default function MapComponent() {
     }
   }, [selectedMapId, dimensions])
 
+  const handleGatePanelClose = () => {
+    setSelectedGateId(null)
+  }
+
   return (
     <div className="flex flex-col h-full">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-2 mb-2 p-2 bg-gray-100 dark:bg-gray-800 rounded">
+      <div className="sticky top-0 z-10 flex flex-row justify-between items-center gap-2 p-2 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-sm">
         <div className="flex items-center gap-2">
-          <Map className="h-5 w-5" />
-          <h2 className="text-lg font-bold">Terminal View</h2>
+          <Map className="h-4 w-4 text-ac-red" />
+          <h2 className="text-sm font-bold">Terminal View</h2>
         </div>
-        <div className="flex flex-col md:flex-row gap-2 w-full md:w-auto">
+        <div className="flex flex-row gap-1 items-center">
           {/* Map Dropdown */}
-          <div className="relative w-full md:w-48">
+          <div className="relative w-32">
             <select
               value={selectedMapId}
               onChange={handleMapDropdownChange}
-              className="w-full appearance-none bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-ac-red"
+              className="w-full appearance-none bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded px-2 py-1 pr-6 text-xs focus:outline-none focus:ring-1 focus:ring-ac-red"
               aria-label="Select a map"
             >
               {availableMaps.map((map) => (
@@ -801,20 +805,20 @@ export default function MapComponent() {
               ))}
             </select>
             <ChevronDown
-              className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-500"
-              size={16}
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-500"
+              size={12}
             />
           </div>
 
           {/* Terminal Dropdown */}
-          <div className="relative w-full md:w-48">
+          <div className="relative w-36">
             <select
               value={selectedTerminalId}
               onChange={handleTerminalDropdownChange}
-              className="w-full appearance-none bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-ac-red"
+              className="w-full appearance-none bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded px-2 py-1 pr-6 text-xs focus:outline-none focus:ring-1 focus:ring-ac-red"
               aria-label="Select a terminal"
             >
-              <option value="">Select a terminal</option>
+              <option value="">Select terminal</option>
               {availableTerminals.map((terminal) => (
                 <option key={terminal.id} value={terminal.id}>
                   {terminal.label}
@@ -822,21 +826,21 @@ export default function MapComponent() {
               ))}
             </select>
             <ChevronDown
-              className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-500"
-              size={16}
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-500"
+              size={12}
             />
           </div>
 
           {/* Gate Dropdown */}
-          <div className="relative w-full md:w-48">
+          <div className="relative w-32">
             <select
               value={selectedGateId || ""}
               onChange={handleGateDropdownChange}
-              className="w-full appearance-none bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-ac-red"
+              className="w-full appearance-none bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded px-2 py-1 pr-6 text-xs focus:outline-none focus:ring-1 focus:ring-ac-red"
               aria-label="Select a gate"
-              disabled={!selectedTerminalId} // Disable if no terminal is selected
+              disabled={!selectedTerminalId}
             >
-              <option value="">Select a gate</option>
+              <option value="">Select gate</option>
               {availableGates.map((gate) => (
                 <option key={gate.id} value={gate.id}>
                   {gate.label}
@@ -844,33 +848,31 @@ export default function MapComponent() {
               ))}
             </select>
             <ChevronDown
-              className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-500"
-              size={16}
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-500"
+              size={12}
             />
           </div>
 
-          {/* Reset Button */}
-          {isZoomed && (
-            <button
-              onClick={resetZoom}
-              className="px-3 py-2 bg-ac-red text-white rounded hover:bg-ac-red/90 transition-colors w-full md:w-auto"
-            >
-              Reset View
-            </button>
-          )}
-
-          {/* Zoom Buttons */}
-          <div className="flex gap-1 w-full md:w-auto">
+          {/* Control Buttons */}
+          <div className="flex gap-1">
+            {isZoomed && (
+              <button
+                onClick={resetZoom}
+                className="px-2 py-1 bg-ac-red text-white text-xs rounded hover:bg-ac-red/90 transition-colors"
+              >
+                Reset
+              </button>
+            )}
             <button
               onClick={zoomIn}
-              className="px-3 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors flex-1 md:flex-none"
+              className="px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors text-xs"
               aria-label="Zoom in"
             >
               +
             </button>
             <button
               onClick={zoomOut}
-              className="px-3 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors flex-1 md:flex-none"
+              className="px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors text-xs"
               aria-label="Zoom out"
             >
               -
@@ -881,7 +883,7 @@ export default function MapComponent() {
       <div className="flex flex-col md:flex-row gap-2 flex-1">
         <div
           ref={mapContainerRef}
-          className="relative flex-1 overflow-hidden border border-gray-300 dark:border-gray-600 rounded-lg"
+          className="relative w-full h-full overflow-hidden border border-gray-300 dark:border-gray-600 rounded-lg"
           onClick={handleMapClick}
         >
           <div
@@ -977,71 +979,40 @@ export default function MapComponent() {
             </svg>
           </div>
         </div>
-        <div className="w-full md:w-72">
-          <GateStatusPanel selectedGateId={selectedGateId} selectedGate={selectedGate} />
-        </div>
       </div>
-      <div className="mt-2 p-2 bg-gray-100 dark:bg-gray-800 rounded">
-        <div className="text-sm font-medium mb-2">Map Legend</div>
-
-        {/* Group by categories */}
-        <div className="flex flex-col md:flex-row gap-4">
-          {/* Flight Directions Group */}
-          {/* <div className="flex-1">
-            <div className="text-xs font-semibold mb-1 text-gray-600 dark:text-gray-300">Flight Directions</div>
-            <div className="grid grid-cols-2 gap-2">
-              <div className="flex items-center gap-1">
-                <div className="flex items-center justify-center w-6 h-6 bg-white dark:bg-gray-700 rounded-full">
-                  <PlaneLanding size={12} className="text-amber-500" />
-                </div>
-                <span className="text-xs">Inbound Flight</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <div className="flex items-center justify-center w-6 h-6 bg-white dark:bg-gray-700 rounded-full">
-                  <PlaneTakeoff size={12} className="text-emerald-500" />
-                </div>
-                <span className="text-xs">Outbound Flight</span>
-              </div>
-            </div>
-          </div> */}
-
-          {/* Flight Status Group */}
-          <div className="flex-1">
-            <div className="text-xs font-semibold mb-1 text-gray-600 dark:text-gray-300">Flight Status</div>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-              <div className="flex items-center gap-1">
-                <div className="w-4 h-4 rounded-full" style={{ backgroundColor: statusColors.active }}></div>
-                <span className="text-xs">Active</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <div className="w-4 h-4 rounded-full" style={{ backgroundColor: statusColors.scheduled }}></div>
-                <span className="text-xs">Scheduled</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <div className="w-4 h-4 rounded-full" style={{ backgroundColor: statusColors.delayed }}></div>
-                <span className="text-xs">Delayed</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <div className="w-4 h-4 rounded-full" style={{ backgroundColor: statusColors.cancelled }}></div>
-                <span className="text-xs">Cancelled</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <div className="w-4 h-4 rounded-full" style={{ backgroundColor: statusColors.maintenance }}></div>
-                <span className="text-xs">Maintenance</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <div className="w-4 h-4 rounded-full" style={{ backgroundColor: statusColors.aog }}></div>
-                <span className="text-xs">AOG</span>
-              </div>
-            </div>
-          </div>
+      {/* Gate Status Panel is now positioned absolutely */}
+      {selectedGateId && selectedGate && (
+        <div className="fixed right-0 top-0 bottom-0 z-50 w-full sm:w-96 bg-white dark:bg-gray-800 shadow-lg border-l border-gray-200 dark:border-gray-700 overflow-auto">
+          <GateStatusPanel selectedGateId={selectedGateId} selectedGate={selectedGate} onClose={handleGatePanelClose} />
         </div>
-
-        {/* <div className="mt-2 text-xs text-gray-500 dark:text-gray-400 text-center">
-          Drag to pan • Click gate for details • Use controls to navigate
-        </div> */}
+      )}
+      <div className="mt-1 py-1 px-2 bg-gray-100 dark:bg-gray-800 rounded flex items-center flex-wrap gap-x-3 gap-y-1 text-xs">
+        <span className="font-medium">Legend:</span>
+        <div className="flex items-center gap-1">
+          <div className="w-3 h-3 rounded-full" style={{ backgroundColor: statusColors.active }}></div>
+          <span>Active</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <div className="w-3 h-3 rounded-full" style={{ backgroundColor: statusColors.scheduled }}></div>
+          <span>Scheduled</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <div className="w-3 h-3 rounded-full" style={{ backgroundColor: statusColors.delayed }}></div>
+          <span>Delayed</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <div className="w-3 h-3 rounded-full" style={{ backgroundColor: statusColors.cancelled }}></div>
+          <span>Cancelled</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <div className="w-3 h-3 rounded-full" style={{ backgroundColor: statusColors.maintenance }}></div>
+          <span>Maintenance</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <div className="w-3 h-3 rounded-full" style={{ backgroundColor: statusColors.aog }}></div>
+          <span>AOG</span>
+        </div>
       </div>
     </div>
   )
 }
-

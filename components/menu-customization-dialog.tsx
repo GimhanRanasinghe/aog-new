@@ -123,4 +123,3 @@ export function MenuCustomizationDialog({ open, onOpenChange }: MenuCustomizatio
     </Dialog>
   )
 }
-

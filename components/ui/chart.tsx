@@ -1,29 +1,27 @@
 "use client"
 import {
-  ResponsiveContainer,
   BarChart as RechartsBarChart,
-  Bar,
+  LineChart as RechartsLineChart,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  LineChart as RechartsLineChart,
+  Bar,
   Line,
 } from "recharts"
 
-interface BarChartProps {
+interface ChartProps {
   data: any[]
   xField: string
   yField: string
+  height: number
   colors: string[]
-  height?: number
 }
 
-export function BarChart({ data, xField, yField, colors, height = 300 }: BarChartProps) {
+export const BarChart = ({ data, xField, yField, height, colors }: ChartProps) => {
   return (
     <ResponsiveContainer width="100%" height={height}>
       <RechartsBarChart data={data}>
-        <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey={xField} />
         <YAxis />
         <Tooltip />
@@ -33,25 +31,15 @@ export function BarChart({ data, xField, yField, colors, height = 300 }: BarChar
   )
 }
 
-interface LineChartProps {
-  data: any[]
-  xField: string
-  yField: string
-  colors: string[]
-  height?: number
-}
-
-export function LineChart({ data, xField, yField, colors, height = 300 }: LineChartProps) {
+export const LineChart = ({ data, xField, yField, height, colors }: ChartProps) => {
   return (
     <ResponsiveContainer width="100%" height={height}>
       <RechartsLineChart data={data}>
-        <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey={xField} />
         <YAxis />
         <Tooltip />
-        <Line type="monotone" dataKey={yField} stroke={colors[0]} />
+        <Line type="monotone" dataKey={yField} stroke={colors[0]} strokeWidth={2} />
       </RechartsLineChart>
     </ResponsiveContainer>
   )
 }
-

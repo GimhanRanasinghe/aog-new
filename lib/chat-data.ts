@@ -531,4 +531,3 @@ export function getMostRecentMessageByAircraft(): Record<string, ChatMessage> {
 
   return result
 }
-

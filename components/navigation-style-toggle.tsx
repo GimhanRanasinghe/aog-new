@@ -60,4 +60,3 @@ export function NavigationStyleToggle({ asMenuItem = false }: NavigationStyleTog
     </div>
   )
 }
-

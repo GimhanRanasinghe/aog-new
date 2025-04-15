@@ -31,4 +31,3 @@ export function ChatButton({ groupId, label = "Join Chat", showIcon = true, upda
     </>
   )
 }
-

@@ -696,4 +696,3 @@ export function AircraftHistoryTimeline({
     </div>
   )
 }
-

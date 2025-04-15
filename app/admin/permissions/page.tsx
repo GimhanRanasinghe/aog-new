@@ -512,4 +512,3 @@ function getSecurityBadge(level: "low" | "medium" | "high") {
       return null
   }
 }
-

@@ -414,4 +414,3 @@ function getImpactBadge(level: "low" | "medium" | "high") {
       return null
   }
 }
-

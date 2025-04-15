@@ -295,4 +295,3 @@ export default function RoleManagement() {
     </ProtectedRoute>
   )
 }
-

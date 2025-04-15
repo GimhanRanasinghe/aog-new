@@ -74,4 +74,3 @@ export async function POST(request: Request) {
     return NextResponse.json({ success: false, message: "Error processing request" }, { status: 500 })
   }
 }
-

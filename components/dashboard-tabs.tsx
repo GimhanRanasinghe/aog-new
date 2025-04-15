@@ -90,4 +90,3 @@ export function DashboardTabs({ currentSection }: { currentSection: string }) {
     </div>
   )
 }
-

@@ -543,4 +543,3 @@ export function AircraftAOGHistory({ aircraft, aogHistory }: AircraftAOGHistoryP
     </div>
   )
 }
-

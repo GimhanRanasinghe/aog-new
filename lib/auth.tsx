@@ -724,4 +724,3 @@ export function usePermission(permission: Permission) {
   const { hasPermission } = useAuth()
   return hasPermission(permission)
 }
-

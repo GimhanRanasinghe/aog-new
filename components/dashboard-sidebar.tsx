@@ -5,7 +5,18 @@ import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { BarChart, History, MessageSquare, Users, Home, ChevronLeft, ChevronRight, Plane, Map } from "lucide-react"
+import {
+  BarChart,
+  History,
+  MessageSquare,
+  Users,
+  Home,
+  ChevronLeft,
+  ChevronRight,
+  Plane,
+  Map,
+  AlertCircle,
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { useUserPreferences } from "@/lib/user-preferences"
@@ -28,6 +39,12 @@ const dashboardRoutes = [
     href: "/dashboard/fleet-overview",
     icon: Plane,
     id: "fleet-overview",
+  },
+  {
+    name: "AOG Cards",
+    href: "/dashboard/aog-cards",
+    icon: AlertCircle,
+    id: "aog-cards",
   },
   {
     name: "Analytics",
@@ -62,7 +79,7 @@ export function DashboardSidebar() {
 
   // Filter routes based on visibility settings
   const visibleRoutes = dashboardRoutes.filter(
-    (route) => preferences.menuVisibility[route.id as keyof typeof preferences.menuVisibility],
+    (route) => preferences.menuVisibility[route.id as keyof typeof preferences.menuVisibility] !== false,
   )
 
   return (
@@ -132,4 +149,3 @@ export function DashboardSidebar() {
     </div>
   )
 }
-

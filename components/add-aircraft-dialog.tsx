@@ -212,4 +212,3 @@ export function AddAircraftDialog({ open, onOpenChange, onAddAircraft }: AddAirc
     </Dialog>
   )
 }
-

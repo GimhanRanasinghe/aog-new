@@ -24,4 +24,3 @@ export function ClientNavigationWrapper({ children }: { children: ReactNode }) {
     </div>
   )
 }
-

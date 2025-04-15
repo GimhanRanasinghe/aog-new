@@ -221,4 +221,3 @@ export function AircraftDefects({ defects, aircraftId }: AircraftDefectsProps) {
     </ScrollArea>
   )
 }
-

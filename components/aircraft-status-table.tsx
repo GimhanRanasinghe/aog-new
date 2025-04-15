@@ -147,4 +147,3 @@ export function AircraftStatusTable({ aircraftData, onSelectAircraft }: Aircraft
     </div>
   )
 }
-

@@ -482,4 +482,3 @@ export default function AircraftHistoryPage({ params }: { params: { id: string }
     </div>
   )
 }
-

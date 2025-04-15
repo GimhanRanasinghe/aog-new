@@ -763,4 +763,3 @@ export function AOGHistory() {
     </div>
   )
 }
-

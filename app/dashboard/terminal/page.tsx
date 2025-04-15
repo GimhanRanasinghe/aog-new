@@ -35,22 +35,17 @@ export default function TerminalPage() {
 
   return (
     <div className="container mx-auto p-4 space-y-4">
-      <div className="flex items-center gap-2 mb-4">
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-2xl font-bold">Terminal Map</h1>
         <Button variant="outline" size="sm" onClick={() => router.back()}>
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back
         </Button>
       </div>
 
-      <h1 className="text-2xl font-bold">Terminal Map</h1>
-      <p className="text-muted-foreground">
-        Interactive map of terminal gates and aircraft positions. Click on a gate to view details and navigate to the
-        corresponding aircraft in the fleet overview.
-      </p>
       <div className="h-[calc(100vh-200px)]">
         <MapComponent />
       </div>
     </div>
   )
 }
-

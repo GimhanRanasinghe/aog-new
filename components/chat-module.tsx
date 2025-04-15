@@ -106,4 +106,3 @@ export function ChatPortal({ aircraftFin, aircraftReg, simplified = false }) {
     </div>
   )
 }
-

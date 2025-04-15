@@ -63,7 +63,7 @@ export default function AircraftDefectsPage({ params }: { params: { id: string }
       <div className="flex items-center gap-4">
         {/* <Link href={`/aircraft/${params.id}`}> */}
         <Link href={`/dashboard/fleet-overview?highlight=${params.id}`}>
-        {/* dashboard/fleet-overview?highlight=AC118 */}
+          {/* dashboard/fleet-overview?highlight=AC118 */}
           <Button variant="ghost" size="icon">
             <ArrowLeft className="h-5 w-5" />
           </Button>
@@ -327,4 +327,3 @@ function DefectCard({
     </div>
   )
 }
-

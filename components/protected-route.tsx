@@ -13,4 +13,3 @@ export function ProtectedRoute({ children, requiredPermission, fallback }: Prote
   // Always return children, bypassing permission check completely
   return <>{children}</>
 }
-

@@ -30,4 +30,3 @@ export function DashboardNavigationWrapper({ children }: { children: React.React
     </>
   )
 }
-
